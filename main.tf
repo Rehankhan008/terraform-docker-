@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "docker" {
-  host     = "ssh://mdevpc-194\user@192.168.1.100:22"   # replace with your username and remote host IP
+  host     = "ssh://mdevpc-194\user@localhost:22"   # replace with your username and remote host IP
   ssh_opts = [
     "-o", "StrictHostKeyChecking=no", 
     "-o", "UserKnownHostsFile=/dev/null"
