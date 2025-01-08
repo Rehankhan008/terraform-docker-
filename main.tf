@@ -1,9 +1,8 @@
 provider "kubernetes" {
-  config_path    = "C:\\Users\\user\\.kube" # Correct Windows path to kubeconfig
-  config_context = "docker-desktop"  # Ensure the context is correct for Docker Desktop Kubernetes
+  config_path    = "C:\\Users\\user\\.kube\\config"
+  config_context = "docker-desktop"
 }
 
-# Create an Nginx pod
 resource "kubernetes_pod" "nginx" {
   metadata {
     name = "terraform-example"
@@ -20,18 +19,16 @@ resource "kubernetes_pod" "nginx" {
   }
 }
 
-# Create a service to expose the Nginx pod
 resource "kubernetes_service" "nginx" {
   metadata {
     name = "terraform-example"
   }
-  
   spec {
     selector = {
-      app = kubernetes_pod.nginx.metadata[0].labels.app  # Use the correct index for the labels
+      app = kubernetes_pod.nginx.metadata.0.labels.app
     }
     port {
-      port = 80
+      port        = 80
     }
 
     type = "NodePort"
