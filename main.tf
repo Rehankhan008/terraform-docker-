@@ -8,11 +8,8 @@ terraform {
 }
 
 provider "docker" {
-  host     = "ssh://mdevpc-194\user@localhost:22"   # replace with your username and remote host IP
-  ssh_opts = [
-    "-o", "StrictHostKeyChecking=no", 
-    "-o", "UserKnownHostsFile=/dev/null"
-  ]
+  host     = "ssh://mdevpc-194\user@localhost:22"
+  ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
 }
 
 resource "docker_image" "nginx" {
