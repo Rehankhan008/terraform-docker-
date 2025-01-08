@@ -1,26 +1,43 @@
-terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "2.16.0"
+# Configure Kubernetes provider and connect to the Kubernetes API server
+provider "kubernetes" {
+  config_path    = "~/.kube/config"
+  config_context = "docker-desktop"
+}
+
+# Create an Nginx pod
+resource "kubernetes_pod" "nginx" {
+  metadata {
+    name = "terraform-example"
+    labels = {
+      app = "nginx"
+    }
+  }
+
+  spec {
+    container {
+      image = "nginx:1.23.2"
+      name  = "example"
     }
   }
 }
 
-provider "docker" {
-  host = "ssh://user@192.168.2.127:22"
-  ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
-}
-
-resource "docker_image" "nginx" {
-  name = "nginx:latest"
-}
-
-resource "docker_container" "nginx" {
-  name  = "nginx-container"
-  image = docker_image.nginx.latest
-  ports {
-    internal = 80
-    external = 8080
+# Create an service
+resource "kubernetes_service" "nginx" {
+  metadata {
+    name = "terraform-example"
   }
+  spec {
+    selector = {
+      app = kubernetes_pod.nginx.metadata.0.labels.app
+    }
+    port {
+      port        = 80
+    }
+
+    type = "NodePort"
+  }
+
+  depends_on = [
+    kubernetes_pod.nginx
+  ]
 }
