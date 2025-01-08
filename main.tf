@@ -1,8 +1,10 @@
 terraform {
-  kubernetes = {
+  required_providers {
+    kubernetes = {
       source = "hashicorp/kubernetes"
-      version = "2.20.0"
+      version = "2.35.1"
     }
+  }
 }
 provider "kubernetes" {
   config_path = "C:\\Users\\user\\.kube\\config"  # Path to your kubeconfig file
