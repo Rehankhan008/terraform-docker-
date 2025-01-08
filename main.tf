@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "docker" {
-  host = "ssh://user@ 192.168.2.127:22"
+  host = "ssh://user@192.168.2.127:22"
   ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null"]
 }
 
