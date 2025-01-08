@@ -1,7 +1,7 @@
 provider "kubernetes" {
-  config_path = "C:\\Users\\user\\.kube\\config"  # Specify the path to your kubeconfig file
-  context     = "docker-desktop"  # Specify the context from the kubeconfig
+  config_path = "C:\\Users\\user\\.kube\\config"  # Path to your kubeconfig file
 }
+
 
 
 
