@@ -1,8 +1,9 @@
 # Configure Kubernetes provider and connect to the Kubernetes API server
 provider "kubernetes" {
-  config_path    = "~/.kube/config"
-  config_context = "docker-desktop"
+  config_path    = "C:\\Users\\mdevpc-194\\.kube\\config"  # Correct Windows path
+  config_context = "docker-desktop"  # Make sure this is the correct context
 }
+
 
 # Create an Nginx pod
 resource "kubernetes_pod" "nginx" {
