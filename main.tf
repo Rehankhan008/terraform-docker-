@@ -1,3 +1,9 @@
+terraform {
+  kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "2.20.0"
+    }
+}
 provider "kubernetes" {
   config_path = "C:\\Users\\user\\.kube\\config"  # Path to your kubeconfig file
 }
