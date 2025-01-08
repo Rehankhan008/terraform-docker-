@@ -1,5 +1,5 @@
 provider "kubernetes" {
-  config_path    = "C:\\Users\\user\\.kube\\config"
+  config_path = "C:\\Users\\user\\.kube\\config"  # Ensure this path is correct
   config_context = "docker-desktop"
 }
 
