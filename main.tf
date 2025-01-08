@@ -1,27 +1,23 @@
 terraform {
   required_providers {
     docker = {
-      source = "calxus/docker"
-      version = "3.0.0"
+      source  = "kreuzwerker/docker"
+      version = "2.16.0"
     }
   }
 }
 
 provider "docker" {
-  # Configuration options
+  host = "unix:///var/run/docker.sock"
 }
 
-provider "docker" {}
-
-resource "docker_image" "nginx" {
-  name = "nginx:latest"
+# Pulls the image
+resource "docker_image" "ubuntu" {
+  name = "ubuntu:latest"
 }
 
-resource "docker_container" "nginx" {
-  name  = "nginx-container"
-  image = docker_image.nginx.latest
-  ports {
-    internal = 80
-    external = 8080
-  }
+# Create a container
+resource "docker_container" "foo" {
+  image = docker_image.ubuntu.latest
+  name  = "foo"
 }
