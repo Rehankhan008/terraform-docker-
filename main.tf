@@ -1,5 +1,5 @@
 provider "kubernetes" {
-  config_path    = "C:\\Users\\mdevpc-194\\user\\.kube\\config"  # Correct Windows path to kubeconfig
+  config_path    = "C:\\Users\\mdevpc-194\user\\.kube\\config"  # Correct Windows path to kubeconfig
   config_context = "docker-desktop"  # Ensure the context is correct for Docker Desktop Kubernetes
 }
 
