@@ -1,10 +1,14 @@
 terraform {
   required_providers {
     docker = {
-      source  = "hashicorp/docker"
-      version = "~> 3.0"
+      source = "calxus/docker"
+      version = "3.0.0"
     }
   }
+}
+
+provider "docker" {
+  # Configuration options
 }
 
 provider "docker" {}
