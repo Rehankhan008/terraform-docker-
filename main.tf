@@ -1,9 +1,7 @@
-# Configure Kubernetes provider and connect to the Kubernetes API server
 provider "kubernetes" {
-  config_path    = "C:\\Users\\mdevpc-194\\.kube\\config"  # Correct Windows path
-  config_context = "docker-desktop"  # Make sure this is the correct context
+  config_path    = "C:\\Users\\mdevpc-194\\.kube\\config"  # Correct Windows path to kubeconfig
+  config_context = "docker-desktop"  # Ensure the context is correct for Docker Desktop Kubernetes
 }
-
 
 # Create an Nginx pod
 resource "kubernetes_pod" "nginx" {
@@ -22,17 +20,18 @@ resource "kubernetes_pod" "nginx" {
   }
 }
 
-# Create an service
+# Create a service to expose the Nginx pod
 resource "kubernetes_service" "nginx" {
   metadata {
     name = "terraform-example"
   }
+  
   spec {
     selector = {
-      app = kubernetes_pod.nginx.metadata.0.labels.app
+      app = kubernetes_pod.nginx.metadata[0].labels.app  # Use the correct index for the labels
     }
     port {
-      port        = 80
+      port = 80
     }
 
     type = "NodePort"
