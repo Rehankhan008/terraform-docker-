@@ -1,6 +1,6 @@
 provider "kubernetes" {
   config_path = "C:\\Users\\user\\.kube\\config"  # Ensure this path is correct
-  config_context = "docker-desktop"
+  host = "https://kubernetes.docker.internal:6443"  # Set server URL explicitly
 }
 
 resource "kubernetes_pod" "nginx" {
